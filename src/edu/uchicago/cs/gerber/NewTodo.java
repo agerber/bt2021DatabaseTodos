@@ -22,9 +22,35 @@ public class NewTodo extends Activity  {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.insert);
+		edtTitle = (EditText) findViewById(R.id.edtTitle);
+		edtDetail = (EditText) findViewById(R.id.edtDetail);
 
+		btnAdd = (Button) findViewById(R.id.btnUpdate);
+		//btnAdd.setOnClickListener(this);
 
 	}
+
+	// ################################################
+	// used for ActionBar
+	// ################################################
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.actbar_insert, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.add:
+			//addTodo();
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
 
 
 

@@ -38,10 +38,43 @@ public class Main extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.main);
-
+		edtTitle = (EditText) findViewById(R.id.edtTitle);
+		edtDetail = (EditText) findViewById(R.id.edtDetail);
+		//tdsSource = new TodosDataSource(this);
+		registerForContextMenu(getListView());
 
 	}
 
-	
+//	private void refreshData() {
+//
+//		List<Todo> values = tdsSource.getAllTodos();
+//		//will call the toString() method of Todo
+//		ArrayAdapter<Todo> adapter = new ArrayAdapter<Todo>(this,
+//				android.R.layout.simple_list_item_1, values);
+//		setListAdapter(adapter);
+//
+//	}
+
+
+
+
+
+	//################################################
+	// this responds to the click of ListActivity
+	//################################################
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+
+		//call the UpdateTodo activity
+		Intent intent = new Intent(Main.this, UpdateTodo.class);
+		Bundle bnd = new Bundle();
+		Todo tdoPass = null;
+		tdoPass = (Todo) getListAdapter().getItem(position);
+		bnd.putSerializable(TODO_KEY, tdoPass);
+		intent.putExtras(bnd);
+		startActivityForResult(intent, REQ_UPDATE);
+	}
+
+
 
 }
